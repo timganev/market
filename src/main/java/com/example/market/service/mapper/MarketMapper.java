@@ -1,7 +1,9 @@
 package com.example.market.service.mapper;
 
+import com.example.market.model.dto.ContractDto;
 import com.example.market.model.dto.ItemDto;
 import com.example.market.model.dto.UserDto;
+import com.example.market.model.entity.ContractEntity;
 import com.example.market.model.entity.ItemEntity;
 import com.example.market.model.entity.UserEntity;
 import org.mapstruct.Mapper;
@@ -15,5 +17,8 @@ public interface MarketMapper {
 
   @Mappings({})
   ItemEntity dtoToEntity(ItemDto dto);
+
+  @Mappings({})
+  ContractEntity dtoToEntity(ContractDto dto);
 
 }

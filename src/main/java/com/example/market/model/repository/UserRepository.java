@@ -1,6 +1,5 @@
 package com.example.market.model.repository;
 
-
 import com.example.market.model.entity.UserEntity;
 import com.example.market.model.projection.UserView;
 import java.util.List;

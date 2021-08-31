@@ -8,7 +8,7 @@ public interface ItemService {
 
   List<ItemView> findAll();
 
-  ItemView findItemById(Long id);
+  ItemView findById(Long id);
 
   void update(ItemDto request);
 

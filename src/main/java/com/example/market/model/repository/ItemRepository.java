@@ -1,6 +1,5 @@
 package com.example.market.model.repository;
 
-
 import com.example.market.model.entity.ItemEntity;
 import com.example.market.model.projection.ItemView;
 import java.util.List;
