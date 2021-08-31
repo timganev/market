@@ -1,5 +1,6 @@
-package com.example.market.service;
+package com.example.market.service.user;
 
+import com.example.market.model.dto.UserDto;
 import com.example.market.model.entity.UserEntity;
 import com.example.market.model.projection.UserView;
 import com.example.market.model.repository.UserRepository;
@@ -34,10 +35,13 @@ public class UserServiceImpl implements UserService{
   }
 
   @Override
-  public void update(UserEntity request) {
-    Optional<UserEntity> optinal = userRepository.findById(request.getId());
-    if(optinal.isPresent()){
-      userRepository.save(request);
+  public void update(UserDto request) {
+    Optional<UserEntity> optional = userRepository.findById(request.getId());
+    if(optional.isPresent()){
+      UserEntity entity = optional.get();
+      entity.setUsername(request.getUsername());
+      entity.setAccount(request.getAccount());
+      userRepository.save(entity);
     }
   }
 

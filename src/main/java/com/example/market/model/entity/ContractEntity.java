@@ -3,11 +3,9 @@ package com.example.market.model.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Getter;
@@ -18,18 +16,21 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class ItemEntity {
+public class ContractEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(nullable = false, updatable = false)
   private Long id;
 
-  @Column(nullable = false, unique = true)
-  private String name;
+  @ManyToOne(fetch = FetchType.LAZY)
+  UserEntity seller;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  UserEntity owner;
+  UserEntity buyer;
+
+  private Boolean active;
+
 
   @Override
   public boolean equals(Object o) {
@@ -37,11 +38,11 @@ public class ItemEntity {
       return true;
     }
 
-    if (!(o instanceof ItemEntity)) {
+    if (!(o instanceof ContractEntity)) {
       return false;
     }
 
-    ItemEntity other = (ItemEntity) o;
+    ContractEntity other = (ContractEntity) o;
 
     return id != null && id.equals(other.getId());
   }

@@ -1,4 +1,4 @@
-package com.example.market.validation;
+package com.example.market.service.validation;
 
 import org.springframework.stereotype.Service;
 

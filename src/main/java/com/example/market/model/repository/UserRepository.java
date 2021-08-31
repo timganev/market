@@ -12,9 +12,8 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
 
-
-  @Query(value = "SELECT  user.username AS username FROM UserEntity user "
-              + " ORDER BY user.id ")
+  @Query(value = "SELECT user.id AS id, user.username AS username FROM UserEntity user "
+      + " ORDER BY user.id ")
   List<UserView> getAll();
 
 }

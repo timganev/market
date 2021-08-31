@@ -3,9 +3,9 @@ package com.example.market.web;
 import com.example.market.model.dto.UserDto;
 import com.example.market.model.entity.UserEntity;
 import com.example.market.model.projection.UserView;
-import com.example.market.service.UserMapper;
-import com.example.market.service.UserService;
-import com.example.market.validation.ValidationService;
+import com.example.market.service.mapper.MarketMapper;
+import com.example.market.service.user.UserService;
+import com.example.market.service.validation.ValidationService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,13 +23,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
   private final UserService userService;
-  private final UserMapper userMapper;
+  private final MarketMapper marketMapper;
   private final ValidationService validationService;
 
   @Autowired
-  public UserController(UserService userService, UserMapper userMapper, ValidationService validationService) {
+  public UserController(UserService userService, MarketMapper marketMapper, ValidationService validationService) {
     this.userService = userService;
-    this.userMapper = userMapper;
+    this.marketMapper = marketMapper;
     this.validationService = validationService;
   }
 
@@ -51,15 +51,14 @@ public class UserController {
 
   @PutMapping(value = "/user")
   public ResponseEntity<Void> editUser(@RequestBody UserDto request) {
-    UserEntity entity = userMapper.dtoToEntity(request);
-    userService.update(entity);
+    userService.update(request);
     return new ResponseEntity<>(HttpStatus.OK);
   }
 
 
   @PostMapping(value = "/user")
   public ResponseEntity<Void> saveUser(@RequestBody UserDto request) {
-    UserEntity entity = userMapper.dtoToEntity(request);
+    UserEntity entity = marketMapper.dtoToEntity(request);
     userService.save(entity);
     return new ResponseEntity<>(HttpStatus.OK);
   }
